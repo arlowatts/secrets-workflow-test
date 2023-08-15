@@ -16,6 +16,7 @@ jobs:
           context: .
           tags: myimage:latest
           outputs: type=docker,dest=/tmp/myimage.tar
+          build-args: TEST_SECRET=This is from the workflow!
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
