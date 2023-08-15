@@ -13,7 +13,6 @@ jobs:
       - name: Create secret file
         run: |
           echo ${{ secrets.TEST_SECRET }} | base64 --decode > file4.txt
-          echo ${{ secrets.TEST_SECRET_2 }} | base64 --decode > file5.txt
 
       - name: Build and export
         uses: docker/build-push-action@v4
@@ -21,6 +20,8 @@ jobs:
           context: .
           tags: myimage:latest
           outputs: type=docker,dest=/tmp/myimage.tar
+          build-args: |
+            TEST_SECRET_2=${{ secrets.TEST_SECRET_2 }}
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
