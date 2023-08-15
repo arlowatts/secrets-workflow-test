@@ -10,14 +10,16 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
+      - name: Create secret file
+        run: |
+          echo ${{ secrets.TEST_SECRET }} > file4.txt
+
       - name: Build and export
         uses: docker/build-push-action@v4
         with:
           context: .
           tags: myimage:latest
           outputs: type=docker,dest=/tmp/myimage.tar
-          build-args: >
-            TEST_SECRET=${{ secrets.TEST_SECRET }}
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
