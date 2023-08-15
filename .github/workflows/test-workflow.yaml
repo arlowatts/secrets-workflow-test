@@ -16,7 +16,8 @@ jobs:
           context: .
           tags: myimage:latest
           outputs: type=docker,dest=/tmp/myimage.tar
-          build-args: TEST_SECRET=${{ secrets.TEST_SECRET }}
+          build-args: >
+            TEST_SECRET=${{ secrets.TEST_SECRET }}
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
