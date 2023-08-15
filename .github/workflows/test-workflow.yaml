@@ -12,8 +12,8 @@ jobs:
 
       - name: Create secret file
         run: |
-          echo '${{ secrets.TEST_SECRET }}' > file4.txt
-          echo '${{ secrets.TEST_SECRET_2 }}' > file5.txt
+          echo ${{ secrets.TEST_SECRET }} | base64 --decode > file4.txt
+          echo ${{ secrets.TEST_SECRET_2 }} | base64 --decode > file5.txt
 
       - name: Build and export
         uses: docker/build-push-action@v4
