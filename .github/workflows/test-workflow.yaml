@@ -12,7 +12,7 @@ jobs:
 
       - name: Create secret file
         run: |
-          echo ${{ secrets.TEST_SECRET }} > file4.txt
+          echo "${{ secrets.TEST_SECRET }}" > file4.txt
 
       - name: Build and export
         uses: docker/build-push-action@v4
