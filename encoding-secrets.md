@@ -8,4 +8,4 @@ When using GitHub Secrets in workflows, it is important to make sure that the se
     * pass the secret to your docker build as a build arg and decode it in the Dockerfile, or
     * copy the secret into a temporary file with `echo ${{ secrets.MY_SECRET }} | base64 --decode > my-secret`
 
-If you create a temporary file, consider deleting it in your workflow as soon as it has been copied into the docker build.
+If you create a temporary file, consider deleting it in your workflow as soon as it has been copied into the docker build. If you decode it in your Dockerfile, you may need to try variations of the base64 tool depending on your container's OS. For example, certain version may support only the `-d` flag and not the `--decode` flag.
